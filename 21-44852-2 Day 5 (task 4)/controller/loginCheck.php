@@ -1,30 +1,24 @@
 <?php
- session_start();
- $username=$_REQUEST['username'];
- $password=$_REQUEST['password'];
+session_start();
+$username = $_REQUEST['username'];
+$password = $_REQUEST['password'];
 
+$isValidUsername = true;
+$isValidPassword = true;
 
- if ($username == "" || $password == "") {
-    echo "Null Username or password". "\n";
+if ($username == "" || $password == "") {
+    echo "Null Username or password" . "\n";
     $isValidUsername = false;
-} 
+} else {
 
-else {
 
-    if($password != $confirmPassword){
-    echo "password doesn't match" . "\n";
 
-    $isValidPassword = false;
-    }
-
-    } 
+}
 
 if (strlen($username) < 2) {
     echo "Username must contain at least two characters." . "\n";
     $isValidUsername = false;
-} 
-    
-else {
+} else {
     for ($i = 0; $i < strlen($username); $i++) {
         $char = $username[$i];
 
@@ -40,9 +34,7 @@ else {
 if (strlen($password) < 8) {
     echo "Password must not be less than eight characters." . "\n";
     $isValidPassword = false;
-} 
-
-else {
+} else {
     $hasSpecialChar = false;
     for ($i = 0; $i < strlen($password); $i++) {
         $char = $password[$i];
@@ -60,13 +52,18 @@ else {
 }
 
 if ($isValidUsername && $isValidPassword) {
-    
-    if($username==$_SESSION['user']['usename'] && $username==$_SESSION['user']['password']){
-   
-    header('location:home.html');
+
+    if ($username == $_SESSION['user']['username'] &&  $password== $_SESSION['user']['password']){
+        $_SESSION['flag'] = "true";
+        header('location: ../view/home1.php');
+    }
+    else
+    {
+        echo "Password or Username doesn't match";
     }
 }
-}
 
- 
+
+
+
 ?>
