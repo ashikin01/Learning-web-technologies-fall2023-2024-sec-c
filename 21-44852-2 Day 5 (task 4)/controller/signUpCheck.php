@@ -76,6 +76,7 @@ if (isset($_REQUEST['submit'])) {
 
     if ($isValidUsername && $isValidPassword) {
         echo "Valid username and password." . "\n";
+       
         $user = [
             'username' => $username,
             'password' => $password,
@@ -83,7 +84,8 @@ if (isset($_REQUEST['submit'])) {
         ];
 
         $_SESSION['user'] = $user;
-        header('location:login.html');
+        
+        header('location: ../view/login.html');
     }
 
 
